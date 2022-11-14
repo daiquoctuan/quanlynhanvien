@@ -1,4 +1,11 @@
-function NhanVien(){
+function NhanVien(_taikhoan,
+    _tennhanvien,
+    _email,
+    _pass,
+    _ngaylamviec,
+    _luongcanban,
+    _chucvu,
+    _giolam){
     this.taiKhoan = _taikhoan;
     this.tennhanvien = _tennhanvien ;
     this.email = _email;
@@ -25,7 +32,11 @@ function NhanVien(){
     }
 
     this.tinhluong = function(){
-        if()
+        if(this.chucvu === "sếp"){
+            this.tongluong = this.luongcanban * 3;
+        } else if(this.chucvu === "Trưởng phòng"){
+            this.tongluong = this.luongcanban * 2
+        } else {this.tongluong = this.luongcanban}
     }
 
 
