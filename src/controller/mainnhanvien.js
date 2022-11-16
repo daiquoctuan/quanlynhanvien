@@ -1,4 +1,6 @@
 
+var dsnv = new DanhSanhNhanVien();
+
 function getEle(id) {
     return document.getElementById(id);
 }
@@ -21,7 +23,8 @@ function laythongtinNhanVien() {
 
 getEle('btnThemNV').onclick = function () {
     var NV = laythongtinNhanVien();
-
+    dsnv.ThemNhanVien(NV)
+    renderTable(dsnv.arr)
 }
 function renderTable(data) {
     var content = "";
@@ -30,23 +33,15 @@ function renderTable(data) {
         content += `
         <tr>
         <td>${NV.taiKhoan}</td>
-        <td>${NV.hoTen}</td>
+         <td>${NV.tennhanvien}</td>
         <td>${NV.email}</td>
-        <td>${NV.ngayLam}</td>
-        <td>${NV.chucVu}</td>
+        <td>${NV.ngayvaolam}</td>
+        <td>${NV.chucvu}</td>
         <td>${NV.tongluong}</td>
         <td>${NV.loainhanvien}</td>
-        <td>
-        <button class="btn btn-info" onclick="editSV('${sv.maSV}')">Edit</button>
-        <button class="btn btn-danger" onclick="deleteSV('${sv.maSV}')">Delete</button>
+        <td>    
         </td>
-     </tr>
-        
-          
-        
-        `
-
-
+     </tr>`
     }
-getEle('tableDanhSach').innerHTML = content ;
+    getEle('tableDanhSach').innerHTML = content;
 }
