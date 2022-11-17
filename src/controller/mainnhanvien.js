@@ -1,12 +1,12 @@
 
 var dsnv = new DanhSanhNhanVien();
-
+getLocalstorage();
 function getEle(id) {
     return document.getElementById(id);
 }
 
 function laythongtinNhanVien() {
-    var taiKhoan = getEle('tknv').value;
+    var maNv = getEle('tknv').value;
     var hoTen = getEle('name').value;
     var email = getEle('email').value;
     var matKhau = getEle('password').value;
@@ -14,7 +14,7 @@ function laythongtinNhanVien() {
     var luongCB = getEle('luongCB').value;
     var chucVu = getEle('chucvu').value;
     var gioLam = getEle('gioLam').value;
-    var NV = new NhanVien(taiKhoan, hoTen, email, matKhau, ngayLam, luongCB, chucVu, gioLam);
+    var NV = new NhanVien(maNv, hoTen, email, matKhau, ngayLam, luongCB, chucVu, gioLam);
     NV.xeploai();
 
     NV.tinhluong();
@@ -25,6 +25,7 @@ getEle('btnThemNV').onclick = function () {
     var NV = laythongtinNhanVien();
     dsnv.ThemNhanVien(NV)
     renderTable(dsnv.arr)
+    setLocalStorage();
 }
 function renderTable(data) {
     var content = "";
@@ -32,7 +33,7 @@ function renderTable(data) {
         var NV = data[i];
         content += `
         <tr>
-        <td>${NV.taiKhoan}</td>
+        <td>${NV.maNV}</td>
          <td>${NV.tennhanvien}</td>
         <td>${NV.email}</td>
         <td>${NV.ngayvaolam}</td>
@@ -40,8 +41,35 @@ function renderTable(data) {
         <td>${NV.tongluong}</td>
         <td>${NV.loainhanvien}</td>
         <td>    
+<button class="btb btn-danger" onclick="deleteNV('${NV.maNV}')">Delete</button>
+<button class="btb btn-info" onclick="EditNV('${NV.maNV}')">Edit</button>
+
+
         </td>
      </tr>`
     }
     getEle('tableDanhSach').innerHTML = content;
+}
+
+function setLocalStorage() {
+    var datastring = JSON.stringify(dsnv.arr);
+    localStorage.setItem("DSNV", datastring);
+}
+function getLocalstorage() {
+    if (localStorage.getItem("DSNV")) {
+        var datastring = localStorage.getItem("DSNV");
+        dsnv.arr = JSON.parse(datastring);
+        renderTable(dsnv.arr);
+    }
+}
+
+
+function deleteNV(maNV) {
+// console.log(maNV);
+dsnv.XoaNhanVien(maNV);
+console.log(dsnv.arr)
+
+   
+    renderTable(dsnv.arr);
+    setLocalStorage();
 }

@@ -1,4 +1,4 @@
-function NhanVien(_taikhoan,
+function NhanVien(_maNV,
     _tennhanvien,
     _email,
     _pass,
@@ -6,7 +6,7 @@ function NhanVien(_taikhoan,
     _luongcanban,
     _chucvu,
     _giolam){
-    this.taiKhoan = _taikhoan;
+    this.maNV = _maNV;
     this.tennhanvien = _tennhanvien ;
     this.email = _email;
     this.matkhau = _pass;
