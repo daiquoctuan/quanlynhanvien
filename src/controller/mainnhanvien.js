@@ -6,7 +6,7 @@ function getEle(id) {
 }
 
 function laythongtinNhanVien() {
-    var maNv = getEle('tknv').value;
+    var maNV = getEle('tknv').value;
     var hoTen = getEle('name').value;
     var email = getEle('email').value;
     var matKhau = getEle('password').value;
@@ -14,7 +14,7 @@ function laythongtinNhanVien() {
     var luongCB = getEle('luongCB').value;
     var chucVu = getEle('chucvu').value;
     var gioLam = getEle('gioLam').value;
-    var NV = new NhanVien(maNv, hoTen, email, matKhau, ngayLam, luongCB, chucVu, gioLam);
+    var NV = new NhanVien(maNV, hoTen, email, matKhau, ngayLam, luongCB, chucVu, gioLam);
     NV.xeploai();
 
     NV.tinhluong();
@@ -42,7 +42,7 @@ function renderTable(data) {
         <td>${NV.loainhanvien}</td>
         <td>    
 <button class="btb btn-danger" onclick="deleteNV('${NV.maNV}')">Delete</button>
-<button class="btb btn-info" onclick="EditNV('${NV.maNV}')">Edit</button>
+<button class="btb btn-info" data-toggle="modal" data-target="#myModal" onclick="EditNV('${NV.maNV}')">Edit</button>
 
 
         </td>
@@ -65,11 +65,28 @@ function getLocalstorage() {
 
 
 function deleteNV(maNV) {
-// console.log(maNV);
-dsnv.XoaNhanVien(maNV);
-console.log(dsnv.arr)
+    // console.log(maNV);
+    dsnv.XoaNhanVien(maNV);
+    console.log(dsnv.arr);
 
-   
+
     renderTable(dsnv.arr);
     setLocalStorage();
+}
+
+
+function EditNV(maNV) {
+var nv = dsnv.laychitietNV(maNV)
+const nang = document.getElementById('myModal').innerHTML;
+
+
+if(nv){
+    getEle('tknv').value = maNV ;
+    getEle('name').value = hoTen;
+    getEle("email").value = email;
+    getEle("password").value = matKhau;
+    getEle("datepicker").value = ngayLam;
+    getEle("chucvu").value = chucVu;
+    getEle("gioLam").value = gioLam;
+}
 }
