@@ -29,11 +29,9 @@ this.laychitietNV = function (maNV){
     return  this.arr[index];
   }
 };
-
-
-
-  
+ 
   this.CapNhatNhanVien = function () { }
 
-
 }
+//cập nhật
+

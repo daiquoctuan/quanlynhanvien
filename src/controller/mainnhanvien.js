@@ -24,6 +24,7 @@ function laythongtinNhanVien() {
 getEle('btnThemNV').onclick = function () {
     var NV = laythongtinNhanVien();
     dsnv.ThemNhanVien(NV)
+
     renderTable(dsnv.arr)
     setLocalStorage();
 }
@@ -76,17 +77,33 @@ function deleteNV(maNV) {
 
 
 function EditNV(maNV) {
-var nv = dsnv.laychitietNV(maNV)
-const nang = document.getElementById('myModal').innerHTML;
+    var nv = dsnv.laychitietNV(maNV)
+    if (nv) {
+        getEle('tknv').value = nv.maNV;
+        getEle('tknv').disabled = true;
+        getEle("name").value = nv.tennhanvien;
+        getEle("email").value = nv.email;
+        getEle("password").value = nv.matKhau;
+        getEle("datepicker").value = nv.ngayvaolam;
+        getEle("luongCB").value = nv.luongcanban;
+        getEle("chucvu").value = nv.chucvu;
+        getEle("gioLam").value = nv.giolam;
+        getEle('btnThemNV').style.display = "none";
+        getEle("btnCapNhat").style.display = "inline-block"
+
+    }
+}
 
 
-if(nv){
-    getEle('tknv').value = maNV ;
-    getEle('name').value = hoTen;
-    getEle("email").value = email;
-    getEle("password").value = matKhau;
-    getEle("datepicker").value = ngayLam;
-    getEle("chucvu").value = chucVu;
-    getEle("gioLam").value = gioLam;
-}
-}
+
+
+
+//cập nhật
+
+// getEle('upload').addEventListener("click",function(){
+
+
+// var NV = laythongtinNhanVien();
+// console.log(NV);
+
+// });
