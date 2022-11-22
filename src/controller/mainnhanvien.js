@@ -16,7 +16,6 @@ function laythongtinNhanVien() {
     var gioLam = getEle('gioLam').value;
     var NV = new NhanVien(maNV, hoTen, email, matKhau, ngayLam, luongCB, chucVu, gioLam);
     NV.xeploai();
-
     NV.tinhluong();
     return NV;
 }
@@ -83,7 +82,7 @@ function EditNV(maNV) {
         getEle('tknv').disabled = true;
         getEle("name").value = nv.tennhanvien;
         getEle("email").value = nv.email;
-        getEle("password").value = nv.matKhau;
+        getEle("password").value = nv.matkhau;
         getEle("datepicker").value = nv.ngayvaolam;
         getEle("luongCB").value = nv.luongcanban;
         getEle("chucvu").value = nv.chucvu;
@@ -100,10 +99,21 @@ function EditNV(maNV) {
 
 //cập nhật
 
-// getEle('upload').addEventListener("click",function(){
+getEle('btnCapNhat').addEventListener("click",function(){
+var NV = laythongtinNhanVien();
+
+dsnv.CapNhatNhanVien(NV);
+renderTable(dsnv.arr);
+setLocalStorage();
+});
 
 
-// var NV = laythongtinNhanVien();
-// console.log(NV);
+//tìm kiếm loại nhân viên
 
-// });
+getEle('timkiem').addEventListener("keyup", function(){
+var keyword = getEle("timkiem").value;
+
+var timkiemNV = dsnv.timkiem(keyword);
+renderTable(timkiemNV);
+
+})

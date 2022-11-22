@@ -8,12 +8,12 @@ function DanhSanhNhanVien() {
     for (i = 0; i < this.arr.length; i++) {
       var NV = this.arr[i];
       if (NV.maNV === maNV) {
-        index = i; 
+        index = i;
         break;
       }
     }
 
-   return index ;
+    return index;
 
   }
   this.XoaNhanVien = function (maNV) {
@@ -23,15 +23,48 @@ function DanhSanhNhanVien() {
     }
   }
 
-this.laychitietNV = function (maNV){
-  var index = this.TimViTri(maNV)
-  if(index !== -1){
-    return  this.arr[index];
+  this.laychitietNV = function (maNV) {
+    var index = this.TimViTri(maNV)
+    if (index !== -1) {
+      return this.arr[index];
+    }
+  };
+  //  cập nhật đề lên lại arr cũ
+  this.CapNhatNhanVien = function (NV) {
+    var index = this.TimViTri(NV.maNV);
+    if (index !== -1) {
+      this.arr[index] = NV;
+    }
+
   }
-};
- 
-  this.CapNhatNhanVien = function () { }
+
+  //tìm kiếm nhân viên
+  // this.timkiem = function (keyword) {
+  //   var mangtimkiem = [];
+  //   for (var i = 0; i < this.arr.length; i++) {
+  //     var NV = this.arr[i]
+  //     var tenNVLowerCase = NV.loainhanvien.toLowerCase ();
+  //     var keywordLowerCase = keyword.toLowerCase() ;
+  //     if (tenNVLowerCase.indexOf(keywordLowerCase) !== -1) {
+  //       mangtimkiem.push(NV);
+
+  //     }
+  //   } return mangtimkiem;
+  // }
+this.timkiem = function(keyword){
+  var mangtimkiem = [];
+  for(var i = 0 ; i <this.arr.length ; i++){
+    var NV = this.arr[i];
+    var tenNVLowerCase = NV.loainhanvien.toLowerCase();
+    var keywordLowerCase = keyword.toLowerCase();
+    if(tenNVLowerCase.indexOf(keywordLowerCase) !== -1){
+      mangtimkiem.push(NV);
+    }
+  } return  mangtimkiem;
+}
+
+
 
 }
-//cập nhật
+
 
