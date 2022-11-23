@@ -1,5 +1,6 @@
 
 var dsnv = new DanhSanhNhanVien();
+var validation = new validation();
 getLocalstorage();
 function getEle(id) {
     return document.getElementById(id);
@@ -14,11 +15,46 @@ function laythongtinNhanVien() {
     var luongCB = getEle('luongCB').value;
     var chucVu = getEle('chucvu').value;
     var gioLam = getEle('gioLam').value;
+
+    var isvalis = true;
+    //mã nv
+
+    isvalis &= validation.kiemtrarong(maNV, "tbTKNV", "(*) Vui lòng nhập mã");
+
+    //tên nhân viên
+
+    isvalis &= validation.kiemtrarong(hoTen, "tbTen", "(*) Vui lòng nhập tên nhân viên")
+
+    //email
+
+    isvalis &= validation.kiemtrarong(email, "tbEmail", "(*) Vui lòng nhập Email");
+    //mật khẩu
+    isvalis &= validation.kiemtrarong(matKhau, "tbMatKhau", "(*) Vui lòng nhập mật khẩu");
+    // ngày làm việc
+    isvalis &= validation.kiemtrarong(ngayLam, "tbNgay", "(*) Vui lòng nhập ngày làm vào làm");
+    // lương căn bản
+    isvalis &= validation.kiemtrarong(luongCB, "tbLuongCB", "(*) Vui lòng nhập lương căn bản");
+    // chức vụ
+    isvalis &= validation.kiemtrarong(chucVu, "tbChucVu", "(*) Vui lòng nhập chức vụ");
+    // gioLam
+    isvalis &= validation.kiemtrarong(gioLam, "tbGiolam", "(*) Vui lòng nhập giờ làm");
+
+
+
+
+    if (!isvalis) return;
+
     var NV = new NhanVien(maNV, hoTen, email, matKhau, ngayLam, luongCB, chucVu, gioLam);
     NV.xeploai();
     NV.tinhluong();
     return NV;
 }
+
+
+
+
+
+
 
 getEle('btnThemNV').onclick = function () {
     var NV = laythongtinNhanVien();
@@ -99,21 +135,21 @@ function EditNV(maNV) {
 
 //cập nhật
 
-getEle('btnCapNhat').addEventListener("click",function(){
-var NV = laythongtinNhanVien();
+getEle('btnCapNhat').addEventListener("click", function () {
+    var NV = laythongtinNhanVien();
 
-dsnv.CapNhatNhanVien(NV);
-renderTable(dsnv.arr);
-setLocalStorage();
+    dsnv.CapNhatNhanVien(NV);
+    renderTable(dsnv.arr);
+    setLocalStorage();
 });
 
 
 //tìm kiếm loại nhân viên
 
-getEle('timkiem').addEventListener("keyup", function(){
-var keyword = getEle("timkiem").value;
+getEle('timkiem').addEventListener("keyup", function () {
+    var keyword = getEle("timkiem").value;
 
-var timkiemNV = dsnv.timkiem(keyword);
-renderTable(timkiemNV);
+    var timkiemNV = dsnv.timkiem(keyword);
+    renderTable(timkiemNV);
 
 })
