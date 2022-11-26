@@ -66,6 +66,7 @@ if(isadd){
 
 getEle('btnThemNV').onclick = function () {
     var NV = laythongtinNhanVien(true);
+   
     if (NV) {
         dsnv.ThemNhanVien(NV);
         console.log(NV)
@@ -132,9 +133,9 @@ function EditNV(maNV) {
         getEle("chucvu").value = nv.chucvu;
         getEle("gioLam").value = nv.giolam;
         getEle('btnThemNV').style.display = "none";
-        getEle("btnCapNhat").style.display = "inline-block"
+        getEle("btnCapNhat").style.display = "inline-block";
 
-    }
+    } ;
 }
 
 
@@ -161,3 +162,9 @@ getEle('timkiem').addEventListener("keyup", function () {
     renderTable(timkiemNV);
 
 })
+//reset
+getEle("resetform").onclick = function(){
+   
+    getEle("reset").reset();
+    
+}
