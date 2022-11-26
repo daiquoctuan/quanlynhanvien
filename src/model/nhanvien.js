@@ -14,7 +14,7 @@ function NhanVien(_maNV,
     this.luongcanban = _luongcanban ;
     this.chucvu = _chucvu ;
     this.giolam = _giolam ;
-    this.loainhanvien = '';
+    this.loainhanvien = "";
     this.tongluong = 0;
 
     this.xeploai = function(){
