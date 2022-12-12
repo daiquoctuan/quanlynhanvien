@@ -18,13 +18,14 @@ function laythongtinNhanVien(isadd) {
 
     var isvalis = true;
     //mã nv
-if(isadd){
-    isvalis &= validation.kiemtrarong(
-        maNV, "tbTKNV", "(*) Vui lòng nhập mã")
-        && validation.kiemtradodaikytu(
-            maNV, "tbTKNV", '(*) Vui lòng nhập từ 4 đến 10 ký tự', 4, 10)
-        && validation.kiemtratrungmaNV(
-            maNV, "tbTKNV", "(*) Mã nhân viên đã tồn tại", dsnv.arr);}
+    if (isadd) {
+        isvalis &= validation.kiemtrarong(
+            maNV, "tbTKNV", "(*) Vui lòng nhập mã")
+            && validation.kiemtradodaikytu(
+                maNV, "tbTKNV", '(*) Vui lòng nhập từ 4 đến 10 ký tự', 4, 10)
+            && validation.kiemtratrungmaNV(
+                maNV, "tbTKNV", "(*) Mã nhân viên đã tồn tại", dsnv.arr);
+    }
 
     //tên nhân viên
 
@@ -41,7 +42,7 @@ if(isadd){
     //mật khẩu
     isvalis &= validation.kiemtrarong(
         matKhau, "tbMatKhau", "(*) Vui lòng nhập mật khẩu")
-        && validation.kiemmatkhau( matKhau, "tbMatKhau", "(*) Vui lòng kiểm tra mật khẩu")
+        && validation.kiemmatkhau(matKhau, "tbMatKhau", "(*) Vui lòng kiểm tra mật khẩu")
     // ngày làm việc
     isvalis &= validation.kiemtrarong(
         ngayLam, "tbNgay", "(*) Vui lòng nhập ngày vào làm");
@@ -66,7 +67,7 @@ if(isadd){
 
 getEle('btnThemNV').onclick = function () {
     var NV = laythongtinNhanVien(true);
-   
+
     if (NV) {
         dsnv.ThemNhanVien(NV);
         console.log(NV)
@@ -135,7 +136,7 @@ function EditNV(maNV) {
         getEle('btnThemNV').style.display = "none";
         getEle("btnCapNhat").style.display = "inline-block";
 
-    } ;
+    };
 }
 
 
@@ -163,8 +164,8 @@ getEle('timkiem').addEventListener("keyup", function () {
 
 })
 //reset
-getEle("resetform").onclick = function(){
-   
+getEle("resetform").onclick = function () {
+
     getEle("reset").reset();
-    
+
 }
